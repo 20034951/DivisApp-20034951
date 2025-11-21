@@ -1,0 +1,7 @@
+{
+  "name": "conversor-divisas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
