@@ -63,13 +63,8 @@ export class HomePage {
       this.tasaUsd = data.rates.USD; // 1 GTQ → USD
     } catch (err) {
         console.error("API de tipo de cambio falló:", err);
-
-        // Aplicar fallback automático
         this.tasaUsd = this.DEFAULT_TASA_USD;
-
-        // Puedes mostrar un mensaje opcional
-        //this.error = "Usando tasa predeterminada por fallo del servicio.";
-    }
+      }
 
     this.cargando = false;
   }
