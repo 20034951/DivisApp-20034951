@@ -1,20 +1,64 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      DivisAPP 20034951
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <!-- Header condense (iOS style on scroll) -->
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">DivisAPP 20034951</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+    <!-- Tarjeta Tipo de Cambio -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Tipo de Cambio</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+
+        <div *ngIf="cargando">Cargando tipo de cambio...</div>
+        <div *ngIf="error">{{ error }}</div>
+
+        <!-- Mostrar tipo de cambio cuando ya existe -->
+        <div *ngIf="tasaUsd">
+          1 USD = {{ (1 / tasaUsd) | number:'1.2-4' }} GTQ
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Entrada de cantidad -->
+    <ion-item>
+      <ion-label position="floating">Cantidad en Quetzales (Q)</ion-label>
+      <ion-input [(ngModel)]="quetzales" type="number"></ion-input>
+    </ion-item>
+
+    <!-- Botón convertir -->
+    <ion-button 
+      expand="full" 
+      color="success" 
+      (click)="convertir()" 
+      [disabled]="!tasaUsd">
+      Convertir a Dólares
+    </ion-button>
+
+    <!-- Resultado de conversión -->
+    <ion-card *ngIf="resultado !== null">
+      <ion-card-header>
+        <ion-card-title>Resultado</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        $ {{ resultado | number:'1.2-2' }}
+      </ion-card-content>
+    </ion-card>
+
   </div>
 </ion-content>
